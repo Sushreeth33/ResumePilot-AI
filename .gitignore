@@ -6,7 +6,10 @@ coverage/
 .env.*
 !.env.example
 *.log
-uploads/
+backend/uploads/*
+!backend/uploads/resumes/
+backend/uploads/resumes/*
+!backend/uploads/resumes/.gitkeep
 .DS_Store
 Thumbs.db
 .vscode/

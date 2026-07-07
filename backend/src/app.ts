@@ -6,6 +6,7 @@ import { corsOptions } from './config/cors.js';
 import { env } from './config/env.js';
 import { errorMiddleware } from './middleware/error.middleware.js';
 import { authRoutes } from './modules/auth/auth.routes.js';
+import { resumeRoutes } from './modules/resumes/resume.routes.js';
 
 export const app = express();
 
@@ -15,5 +16,6 @@ app.use(morgan(env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/resumes', resumeRoutes);
 
 app.use(errorMiddleware);
