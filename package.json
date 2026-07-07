@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "workspaces": [
+    "frontend",
     "backend"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace backend",
-    "build": "npm run build --workspace backend",
-    "lint": "npm run lint --workspace backend",
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
