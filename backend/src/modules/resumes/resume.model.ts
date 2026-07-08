@@ -4,10 +4,21 @@ export const RESUME_STATUS = {
   UPLOADED: 'UPLOADED',
   PARSING: 'PARSING',
   PARSED: 'PARSED',
+  PARSE_FAILED: 'PARSE_FAILED',
   ANALYZED: 'ANALYZED',
 } as const;
 
 export type ResumeStatus = (typeof RESUME_STATUS)[keyof typeof RESUME_STATUS];
+
+export type ParserMetadata = {
+  parser: 'pdf-parse';
+  pageCount: number | null;
+  wordCount: number;
+  characterCount: number;
+  parsedAt: Date;
+  success: boolean;
+  error: string | null;
+};
 
 export type Resume = {
   userId: Types.ObjectId;
@@ -20,6 +31,7 @@ export type Resume = {
   parsedText: string | null;
   atsScore: number | null;
   analysis: unknown | null;
+  parserMetadata: ParserMetadata | null;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -70,6 +82,10 @@ const resumeSchema = new Schema<Resume>(
       default: null,
     },
     analysis: {
+      type: Schema.Types.Mixed,
+      default: null,
+    },
+    parserMetadata: {
       type: Schema.Types.Mixed,
       default: null,
     },
